@@ -1,536 +1,234 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Healthcare Directory - Adventist Health India</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+{% extends "base.html" %}
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
+{% block title %}Healthcare Professional Directory - Adventist Health India{% endblock %}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Healthcare Professional Directory</h1>
+        <p>Find qualified doctors, nurses, and healthcare professionals from our network of hospitals across India.</p>
+    </div>
+</section>
 
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .header h1 {
-            color: #007AFF;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .header p {
-            color: #86868B;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .search-box {
-            flex: 1;
-            min-width: 300px;
-            position: relative;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #007AFF;
-            box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #86868B;
-        }
-
-        .stats {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .stat {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            font-size: 0.9rem;
-            color: #1D1D1F;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #007AFF, #5856D6);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .avatar {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #007AFF, #5856D6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-right: 1rem;
-        }
-
-        .card-info h3 {
-            color: #1D1D1F;
-            font-size: 1.25rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .card-info .role {
-            color: #007AFF;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .card-body {
-            margin-bottom: 1rem;
-        }
-
-        .detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: #86868B;
-        }
-
-        .detail i {
-            width: 20px;
-            margin-right: 0.5rem;
-            color: #007AFF;
-        }
-
-        .bio {
-            color: #1D1D1F;
-            line-height: 1.5;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: #86868B;
-        }
-
-        .loading i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .error {
-            text-align: center;
-            padding: 3rem;
-            color: #FF3B30;
-        }
-
-        .empty {
-            text-align: center;
-            padding: 3rem;
-            color: #86868B;
-        }
-
-        .empty i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #007AFF;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            background: #007AFF;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn:hover {
-            background: #5856D6;
-            transform: translateY(-2px);
-        }
-
-        .btn:disabled {
-            background: #86868B;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #007AFF;
-            border: 2px solid #007AFF;
-        }
-
-        .btn-secondary:hover {
-            background: #007AFF;
-            color: white;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #007AFF;
-            text-decoration: none;
-            margin-bottom: 2rem;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: #5856D6;
-        }
-
-        @media (max-width: 768px) {
-            .controls {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-box {
-                min-width: auto;
-            }
-
-            .stats {
-                justify-content: center;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
+<!-- Filters Section -->
+<section class="section">
     <div class="container">
-        <a href="/" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Home
-        </a>
-
-        <div class="header">
-            <h1><i class="fas fa-users"></i> Healthcare Directory</h1>
-            <p>Find qualified healthcare professionals in our network</p>
-        </div>
-
-        <div class="controls">
-            <div class="search-box">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="Search by name, hospital, or specialty...">
-            </div>
-            <div class="stats">
-                <div class="stat">
-                    <i class="fas fa-user-md"></i>
-                    <span id="totalCount">0</span> Professionals
+        <div class="filters">
+            <form id="filter-form" method="GET">
+                <div class="filter-group">
+                    <label class="form-label">Hospital</label>
+                    <select name="hospital" class="form-select">
+                        <option value="">All Hospitals</option>
+                        {% for hospital in hospitals %}
+                        <option value="{{ hospital.id }}" {% if request.args.get('hospital') == hospital.id|string %}selected{% endif %}>
+                            {{ hospital.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="stat">
-                    <i class="fas fa-hospital"></i>
-                    <span id="hospitalCount">0</span> Hospitals
+                
+                <div class="filter-group">
+                    <label class="form-label">Role</label>
+                    <select name="role" class="form-select">
+                        <option value="">All Roles</option>
+                        <option value="Doctor" {% if request.args.get('role') == 'Doctor' %}selected{% endif %}>Doctor</option>
+                        <option value="Nurse" {% if request.args.get('role') == 'Nurse' %}selected{% endif %}>Nurse</option>
+                        <option value="Technician" {% if request.args.get('role') == 'Technician' %}selected{% endif %}>Technician</option>
+                        <option value="Pharmacist" {% if request.args.get('role') == 'Pharmacist' %}selected{% endif %}>Pharmacist</option>
+                        <option value="Administrator" {% if request.args.get('role') == 'Administrator' %}selected{% endif %}>Administrator</option>
+                    </select>
                 </div>
-            </div>
-        </div>
-
-        <div id="content">
-            <div class="loading">
-                <i class="fas fa-spinner fa-spin"></i>
-                <p>Loading healthcare professionals...</p>
-            </div>
-        </div>
-
-        <div id="pagination" class="pagination" style="display: none;">
-            <button id="prevBtn" class="btn btn-secondary" disabled>
-                <i class="fas fa-chevron-left"></i>
-                Previous
-            </button>
-            <span id="pageInfo"></span>
-            <button id="nextBtn" class="btn btn-secondary" disabled>
-                Next
-                <i class="fas fa-chevron-right"></i>
-            </button>
+                
+                <div class="filter-group">
+                    <label class="form-label">Specialization</label>
+                    <input type="text" name="specialization" class="form-input" placeholder="e.g., Cardiology, Pediatrics" value="{{ request.args.get('specialization', '') }}">
+                </div>
+                
+                <div class="filter-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                        Filter
+                    </button>
+                    <a href="{{ url_for('directory') }}" class="btn btn-secondary" style="margin-left: 0.5rem;">
+                        <i class="fas fa-times"></i>
+                        Clear
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
+</section>
 
-    <script>
-        let allProfessionals = [];
-        let filteredProfessionals = [];
-        let currentPage = 0;
-        const itemsPerPage = 12;
-
-        const content = document.getElementById('content');
-        const searchInput = document.getElementById('searchInput');
-        const totalCount = document.getElementById('totalCount');
-        const hospitalCount = document.getElementById('hospitalCount');
-        const pagination = document.getElementById('pagination');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const pageInfo = document.getElementById('pageInfo');
-
-        function showLoading() {
-            content.innerHTML = `
-                <div class="loading">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Loading healthcare professionals...</p>
-                </div>
-            `;
-        }
-
-        function showError(message) {
-            content.innerHTML = `
-                <div class="error">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <p>${message}</p>
-                </div>
-            `;
-        }
-
-        function showEmpty() {
-            content.innerHTML = `
-                <div class="empty">
-                    <i class="fas fa-user-md"></i>
-                    <p>No healthcare professionals found</p>
-                </div>
-            `;
-        }
-
-        function getInitials(name) {
-            return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
-        }
-
-        function renderProfessionals(professionals) {
-            if (professionals.length === 0) {
-                showEmpty();
-                return;
-            }
-
-            const html = professionals.map(prof => `
-                <div class="card">
-                    <div class="card-header">
-                        <div class="avatar">
-                            ${getInitials(prof.name)}
-                        </div>
-                        <div class="card-info">
-                            <h3>${prof.name}</h3>
-                            <div class="role">${prof.role}</div>
-                        </div>
+<!-- Professionals Grid -->
+<section class="section" style="background: var(--background-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Healthcare Professionals</h2>
+            <p class="section-subtitle">
+                {% if professionals %}
+                Showing {{ professionals|length }} professional{% if professionals|length != 1 %}s{% endif %}
+                {% else %}
+                No professionals found matching your criteria.
+                {% endif %}
+            </p>
+        </div>
+        
+        {% if professionals %}
+        <div class="grid grid-3">
+            {% for professional in professionals %}
+            <div class="professional-card">
+                <div style="text-align: center;">
+                    {% if professional.profile_photo %}
+                    <img src="{{ professional.profile_photo }}" alt="{{ professional.name }}" class="professional-photo">
+                    {% else %}
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-md" style="font-size: 2rem; color: white;"></i>
                     </div>
-                    <div class="card-body">
-                        <div class="detail">
-                            <i class="fas fa-envelope"></i>
-                            ${prof.email}
-                        </div>
-                        <div class="detail">
-                            <i class="fas fa-hospital"></i>
-                            ${prof.hospital}
-                        </div>
-                        ${prof.specialty ? `
-                            <div class="detail">
-                                <i class="fas fa-stethoscope"></i>
-                                ${prof.specialty}
-                            </div>
-                        ` : ''}
+                    {% endif %}
+                    
+                    <h3 class="professional-name">{{ professional.name }}</h3>
+                    <p class="professional-title">{{ professional.designation }}</p>
+                    <p class="professional-hospital">{{ professional.hospital.name }}</p>
+                    
+                    {% if professional.specialization %}
+                    <div style="margin-bottom: 1rem;">
+                        <span style="background: var(--primary-color); color: white; padding: 0.25rem 0.75rem; border-radius: var(--border-radius-small); font-size: 0.8rem;">
+                            {{ professional.specialization }}
+                        </span>
                     </div>
-                    ${prof.bio ? `
-                        <div class="bio">
-                            ${prof.bio}
-                        </div>
-                    ` : ''}
+                    {% endif %}
+                    
+                    {% if professional.bio %}
+                    <p class="professional-bio">{{ professional.bio }}</p>
+                    {% endif %}
+                    
+                    {% if professional.email or professional.phone %}
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                        {% if professional.email %}
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.25rem;">
+                            <i class="fas fa-envelope" style="margin-right: 0.5rem;"></i>
+                            {{ professional.email }}
+                        </p>
+                        {% endif %}
+                        {% if professional.phone %}
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                            <i class="fas fa-phone" style="margin-right: 0.5rem;"></i>
+                            {{ professional.phone }}
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
                 </div>
-            `).join('');
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="glass-card text-center" style="max-width: 600px; margin: 0 auto; padding: 4rem 2rem;">
+            <i class="fas fa-search" style="font-size: 4rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem;">No Professionals Found</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                Try adjusting your search criteria or browse all professionals.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="{{ url_for('directory') }}" class="btn btn-primary">
+                    <i class="fas fa-list"></i>
+                    View All Professionals
+                </a>
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i>
+                    Join Our Network
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
 
-            content.innerHTML = `<div class="grid">${html}</div>`;
-        }
-
-        function updateStats() {
-            totalCount.textContent = filteredProfessionals.length;
+<!-- Statistics Section -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Professional Network</h2>
+            <p class="section-subtitle">Numbers that reflect our commitment to healthcare excellence.</p>
+        </div>
+        
+        <div class="grid grid-4">
+            <div class="glass-card text-center">
+                <i class="fas fa-user-md" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">200+</h3>
+                <p>Doctors</p>
+            </div>
             
-            const uniqueHospitals = new Set(filteredProfessionals.map(p => p.hospital));
-            hospitalCount.textContent = uniqueHospitals.size;
-        }
-
-        function updatePagination() {
-            const totalPages = Math.ceil(filteredProfessionals.length / itemsPerPage);
-            const start = currentPage * itemsPerPage;
-            const end = Math.min(start + itemsPerPage, filteredProfessionals.length);
-
-            pageInfo.textContent = `Page ${currentPage + 1} of ${totalPages} (${start + 1}-${end} of ${filteredProfessionals.length})`;
-
-            prevBtn.disabled = currentPage === 0;
-            nextBtn.disabled = currentPage >= totalPages - 1;
-
-            pagination.style.display = totalPages > 1 ? 'flex' : 'none';
-        }
-
-        function getCurrentPageProfessionals() {
-            const start = currentPage * itemsPerPage;
-            const end = start + itemsPerPage;
-            return filteredProfessionals.slice(start, end);
-        }
-
-        function filterProfessionals(searchTerm) {
-            if (!searchTerm.trim()) {
-                filteredProfessionals = [...allProfessionals];
-            } else {
-                const term = searchTerm.toLowerCase();
-                filteredProfessionals = allProfessionals.filter(prof => 
-                    prof.name.toLowerCase().includes(term) ||
-                    prof.hospital.toLowerCase().includes(term) ||
-                    prof.role.toLowerCase().includes(term) ||
-                    (prof.specialty && prof.specialty.toLowerCase().includes(term)) ||
-                    (prof.bio && prof.bio.toLowerCase().includes(term))
-                );
-            }
+            <div class="glass-card text-center">
+                <i class="fas fa-user-nurse" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">300+</h3>
+                <p>Nurses</p>
+            </div>
             
-            currentPage = 0;
-            updateStats();
-            updatePagination();
-            renderProfessionals(getCurrentPageProfessionals());
-        }
+            <div class="glass-card text-center">
+                <i class="fas fa-cogs" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">100+</h3>
+                <p>Technicians</p>
+            </div>
+            
+            <div class="glass-card text-center">
+                <i class="fas fa-users" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">50+</h3>
+                <p>Other Staff</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-        async function loadProfessionals() {
-            showLoading();
+<!-- Join Our Network Section -->
+<section class="section" style="background: var(--background-secondary);">
+    <div class="container">
+        <div class="glass-card text-center" style="max-width: 600px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Join Our Healthcare Network</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                Are you a healthcare professional looking to make a difference? Join our network of dedicated doctors, nurses, and medical staff.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="{{ url_for('register') }}" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i>
+                    Register Now
+                </a>
+                <a href="{{ url_for('about') }}" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
 
-            try {
-                const response = await fetch('/api/getApproved?limit=1000');
-                const result = await response.json();
-
-                if (response.ok) {
-                    allProfessionals = result.data;
-                    filteredProfessionals = [...allProfessionals];
-                    updateStats();
-                    updatePagination();
-                    renderProfessionals(getCurrentPageProfessionals());
+{% block scripts %}
+<script>
+// Add search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.professional-card');
+            
+            cards.forEach(card => {
+                const name = card.querySelector('.professional-name').textContent.toLowerCase();
+                const title = card.querySelector('.professional-title').textContent.toLowerCase();
+                const hospital = card.querySelector('.professional-hospital').textContent.toLowerCase();
+                const bio = card.querySelector('.professional-bio') ? card.querySelector('.professional-bio').textContent.toLowerCase() : '';
+                
+                if (name.includes(query) || title.includes(query) || hospital.includes(query) || bio.includes(query)) {
+                    card.style.display = 'block';
                 } else {
-                    showError(result.error || 'Failed to load professionals');
+                    card.style.display = 'none';
                 }
-            } catch (error) {
-                console.error('Error loading professionals:', error);
-                showError('Network error. Please check your connection and try again.');
-            }
-        }
-
-        // Event listeners
-        searchInput.addEventListener('input', (e) => {
-            filterProfessionals(e.target.value);
+            });
         });
+    }
+});
+</script>
+{% endblock %}
 
-        prevBtn.addEventListener('click', () => {
-            if (currentPage > 0) {
-                currentPage--;
-                updatePagination();
-                renderProfessionals(getCurrentPageProfessionals());
-            }
-        });
-
-        nextBtn.addEventListener('click', () => {
-            const totalPages = Math.ceil(filteredProfessionals.length / itemsPerPage);
-            if (currentPage < totalPages - 1) {
-                currentPage++;
-                updatePagination();
-                renderProfessionals(getCurrentPageProfessionals());
-            }
-        });
-
-        // Load professionals on page load
-        loadProfessionals();
-    </script>
-</body>
-</html>

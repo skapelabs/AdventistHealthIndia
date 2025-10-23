@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+{% block title %}Our Hospitals - Adventist Health India{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Our Hospital Network</h1>
+        <p>Discover our 12 hospitals across India, each dedicated to providing exceptional healthcare services to their local communities.</p>
+    </div>
+</section>
+
+<!-- Hospitals Grid -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Hospitals Across India</h2>
+            <p class="section-subtitle">From the hills of Himachal Pradesh to the coastal regions of Kerala, our hospitals serve diverse communities with specialized care.</p>
+        </div>
+        
+        <div class="grid grid-3">
+            {% for hospital in hospitals %}
+            <div class="hospital-card" onclick="window.location.href='{{ url_for('hospital_detail', hospital_id=hospital.id) }}'">
+                <div style="width: 100%; height: 200px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: var(--border-radius-small); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-hospital" style="font-size: 4rem; color: white;"></i>
+                </div>
+                <h3>{{ hospital.name }}</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">{{ hospital.city }}, {{ hospital.state }}</p>
+                
+                {% if hospital.description %}
+                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                    {{ hospital.description[:100] }}{% if hospital.description|length > 100 %}...{% endif %}
+                </p>
+                {% endif %}
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1rem;">
+                    <div style="display: flex; align-items: center;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--text-secondary); margin-right: 0.5rem;"></i>
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);">{{ hospital.state }}</span>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <i class="fas fa-arrow-right" style="color: var(--primary-color);"></i>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Hospital Statistics -->
+<section class="section" style="background: var(--background-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Impact</h2>
+            <p class="section-subtitle">Numbers that reflect our commitment to healthcare excellence across India.</p>
+        </div>
+        
+        <div class="grid grid-4">
+            <div class="glass-card text-center">
+                <i class="fas fa-hospital" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">12</h3>
+                <p>Hospitals</p>
+            </div>
+            
+            <div class="glass-card text-center">
+                <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">10+</h3>
+                <p>States</p>
+            </div>
+            
+            <div class="glass-card text-center">
+                <i class="fas fa-user-md" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">500+</h3>
+                <p>Medical Professionals</p>
+            </div>
+            
+            <div class="glass-card text-center">
+                <i class="fas fa-heart" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3 style="font-size: 2.5rem; margin-bottom: 0.5rem;">50K+</h3>
+                <p>Patients Served</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Overview -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Comprehensive Healthcare Services</h2>
+            <p class="section-subtitle">Our hospitals provide a wide range of medical services to meet diverse healthcare needs.</p>
+        </div>
+        
+        <div class="grid grid-3">
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-stethoscope" style="font-size: 2rem; color: var(--primary-color); margin-right: 1rem;"></i>
+                    <h3>General Medicine</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Comprehensive primary care services for patients of all ages.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-baby" style="font-size: 2rem; color: var(--secondary-color); margin-right: 1rem;"></i>
+                    <h3>Pediatrics</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Specialized care for infants, children, and adolescents.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-female" style="font-size: 2rem; color: var(--accent-color); margin-right: 1rem;"></i>
+                    <h3>Obstetrics & Gynecology</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Women's health services including maternity care.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-x-ray" style="font-size: 2rem; color: var(--primary-color); margin-right: 1rem;"></i>
+                    <h3>Diagnostic Services</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Advanced imaging and laboratory services for accurate diagnosis.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-procedures" style="font-size: 2rem; color: var(--secondary-color); margin-right: 1rem;"></i>
+                    <h3>Surgical Services</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Modern surgical facilities with experienced surgical teams.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-ambulance" style="font-size: 2rem; color: var(--accent-color); margin-right: 1rem;"></i>
+                    <h3>Emergency Care</h3>
+                </div>
+                <p style="color: var(--text-secondary);">24/7 emergency services for critical medical situations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="section" style="background: var(--background-secondary);">
+    <div class="container">
+        <div class="glass-card text-center" style="max-width: 600px; margin: 0 auto;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Find Healthcare Professionals</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                Connect with our network of qualified doctors, nurses, and healthcare professionals.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="{{ url_for('directory') }}" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    Browse Directory
+                </a>
+                <a href="{{ url_for('register') }}" class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i>
+                    Join Our Network
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

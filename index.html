@@ -3,289 +3,284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adventist Health India - Healthcare Network</title>
+    <title>Home - Adventist Health India</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .header h1 {
-            color: #007AFF;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .header p {
-            color: #86868B;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #007AFF, #5856D6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            color: white;
-            font-size: 2rem;
-        }
-
-        .feature-card h3 {
-            color: #1D1D1F;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: #86868B;
-            font-size: 1rem;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin: 4rem 0;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            background: #007AFF;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn:hover {
-            background: #5856D6;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: #007AFF;
-            border: 2px solid #007AFF;
-        }
-
-        .btn-secondary:hover {
-            background: #007AFF;
-            color: white;
-        }
-
-        .stats {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            margin: 4rem 0;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-
-        .stat {
-            padding: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: #007AFF;
-            display: block;
-        }
-
-        .stat-label {
-            color: #86868B;
-            font-size: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding: 2rem;
-            color: #86868B;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-heartbeat"></i> Adventist Health India</h1>
-            <p>Connecting healthcare professionals across India through our comprehensive network</p>
-        </div>
-
-        <div class="features">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-user-plus"></i>
-                </div>
-                <h3>Join Our Network</h3>
-                <p>Register as a healthcare professional to be part of our growing community of medical experts.</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" aria-label="Adventist Health India">
+                    <img src="images/logo.png" alt="Adventist Health India" class="nav-logo-img">
+                </a>
             </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Find Professionals</h3>
-                <p>Discover qualified healthcare professionals in your area or specialty through our comprehensive directory.</p>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="hospitals.html" class="nav-link">Hospitals</a>
+                <a href="directory.html" class="nav-link">Directory</a>
+                <a href="register.html" class="nav-link nav-cta">Join Us</a>
             </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3>Verified Network</h3>
-                <p>All professionals are verified and approved to ensure the highest standards of healthcare delivery.</p>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
         </div>
+    </nav>
 
-        <div class="cta-section">
-            <h2 style="color: #1D1D1F; margin-bottom: 1rem;">Ready to Get Started?</h2>
-            <p style="color: #86868B; font-size: 1.1rem;">Join our network or explore our directory of healthcare professionals</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Healing with Compassion, Excellence, and Faith</h1>
+            <p>Welcome to Adventist Health India, where we provide exceptional healthcare services across 12 hospitals nationwide, guided by our mission to serve communities with love and medical excellence.</p>
+            <div class="hero-cta">
+                <a href="directory.html" class="btn btn-primary">
+                    <i class="fas fa-user-md"></i>
+                    Find Healthcare Professionals
+                </a>
+                <a href="about.html" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More About Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Adventist Health India</h2>
+                <p class="section-subtitle">The Medical Trust of the Seventh-day Adventists represents a network of healthcare institutions dedicated to providing compassionate, high-quality medical care across India.</p>
+            </div>
             
-            <div class="cta-buttons">
-                <a href="/register.html" class="btn">
-                    <i class="fas fa-user-plus"></i>
-                    Register Now
-                </a>
-                <a href="/directory.html" class="btn btn-secondary">
-                    <i class="fas fa-search"></i>
-                    Browse Directory
-                </a>
-            </div>
-        </div>
-
-        <div class="stats">
-            <h3 style="text-align: center; color: #1D1D1F; margin-bottom: 2rem;">Our Network</h3>
-            <div class="stats-grid">
-                <div class="stat">
-                    <span class="stat-number" id="professionalCount">-</span>
-                    <div class="stat-label">Healthcare Professionals</div>
+            <div class="grid grid-3">
+                <div class="glass-card text-center">
+                    <i class="fas fa-hospital" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>12 Hospitals</h3>
+                    <p>Spanning across multiple states, our hospitals serve diverse communities with specialized medical care.</p>
                 </div>
-                <div class="stat">
-                    <span class="stat-number" id="hospitalCount">-</span>
-                    <div class="stat-label">Hospitals & Institutions</div>
+                <div class="glass-card text-center">
+                    <i class="fas fa-users" style="font-size: 3rem; color: var(--secondary-color); margin-bottom: 1rem;"></i>
+                    <h3>Expert Team</h3>
+                    <p>Our network includes qualified doctors, nurses, and healthcare professionals committed to excellence.</p>
                 </div>
-                <div class="stat">
-                    <span class="stat-number" id="specialtyCount">-</span>
-                    <div class="stat-label">Medical Specialties</div>
+                <div class="glass-card text-center">
+                    <i class="fas fa-heart" style="font-size: 3rem; color: var(--accent-color); margin-bottom: 1rem;"></i>
+                    <h3>Compassionate Care</h3>
+                    <p>We believe in treating every patient with dignity, respect, and the highest standard of medical care.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <div class="footer">
-            <p>&copy; 2024 Adventist Health India. Connecting healthcare professionals across India.</p>
+    <!-- Hospitals Grid Section -->
+    <section class="section" style="background: var(--background-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Hospital Network</h2>
+                <p class="section-subtitle">Explore our 12 hospitals across India, each dedicated to serving their local communities with excellence.</p>
+            </div>
+            
+            <div class="grid grid-4x3" id="hospitals-grid">
+                <!-- Hospitals will be loaded dynamically -->
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="hospitals.html" class="btn btn-primary">
+                    <i class="fas fa-hospital"></i>
+                    View All Hospitals
+                </a>
+            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- Mission, Vision & Values Preview -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Foundation</h2>
+                <p class="section-subtitle">Built on principles that guide our commitment to healthcare excellence.</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="glass-card">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i class="fas fa-bullseye" style="font-size: 2rem; color: var(--primary-color); margin-right: 1rem;"></i>
+                        <h3>Mission</h3>
+                    </div>
+                    <p>To provide comprehensive, compassionate healthcare services that promote physical, mental, and spiritual well-being, following the healing ministry of Jesus Christ.</p>
+                </div>
+                
+                <div class="glass-card">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i class="fas fa-eye" style="font-size: 2rem; color: var(--secondary-color); margin-right: 1rem;"></i>
+                        <h3>Vision</h3>
+                    </div>
+                    <p>To be the leading healthcare network in India, recognized for excellence in medical care, innovation, and compassionate service to all communities.</p>
+                </div>
+                
+                <div class="glass-card">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i class="fas fa-gem" style="font-size: 2rem; color: var(--accent-color); margin-right: 1rem;"></i>
+                        <h3>Values</h3>
+                    </div>
+                    <p>Compassion, Excellence, Integrity, Respect, and Service - these core values guide every interaction and decision in our healthcare delivery.</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="about.html" class="btn btn-secondary">
+                    <i class="fas fa-book-open"></i>
+                    Read More About Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet Our Team Teaser -->
+    <section class="section" style="background: var(--background-secondary);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Leadership</h2>
+                <p class="section-subtitle">Dedicated leaders guiding our mission of compassionate healthcare.</p>
+            </div>
+            
+            <div class="grid grid-3">
+                <div class="glass-card text-center">
+                    <div style="width: 100px; height: 100px; background: var(--primary-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Chairman</h3>
+                    <p>Leading our organization with vision and dedication to healthcare excellence.</p>
+                </div>
+                
+                <div class="glass-card text-center">
+                    <div style="width: 100px; height: 100px; background: var(--secondary-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-graduate" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Secretary</h3>
+                    <p>Ensuring smooth operations and administrative excellence across our network.</p>
+                </div>
+                
+                <div class="glass-card text-center">
+                    <div style="width: 100px; height: 100px; background: var(--accent-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-calculator" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Treasurer</h3>
+                    <p>Managing our financial resources to support sustainable healthcare delivery.</p>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="about.html" class="btn btn-primary">
+                    <i class="fas fa-users"></i>
+                    Meet Our Full Team
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="section">
+        <div class="container">
+            <div class="glass-card text-center" style="max-width: 800px; margin: 0 auto;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Join Our Healthcare Network</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                    Are you a healthcare professional looking to make a difference? Join our network of dedicated doctors, nurses, and medical staff.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="register.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Register as Professional
+                    </a>
+                    <a href="directory.html" class="btn btn-secondary">
+                        <i class="fas fa-search"></i>
+                        Find Professionals
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Adventist Health India</h3>
+                    <p>Providing compassionate healthcare services across India with excellence and faith.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="hospitals.html">Our Hospitals</a></li>
+                        <li><a href="directory.html">Directory</a></li>
+                        <li><a href="register.html">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@adventisthealthindia.org</p>
+                    <p>Phone: +91-XXX-XXXX-XXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Adventist Health India. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
     <script>
-        // Load stats from API
-        async function loadStats() {
+        // Load hospitals data dynamically
+        async function loadHospitals() {
             try {
-                const response = await fetch('/api/getApproved?limit=1000');
+                const response = await fetch('/api/getApproved?limit=12');
                 const result = await response.json();
                 
                 if (result.success && result.data) {
-                    const professionals = result.data;
-                    const uniqueHospitals = new Set(professionals.map(p => p.hospital));
-                    const uniqueSpecialties = new Set(professionals.map(p => p.specialty).filter(s => s));
+                    const hospitalsGrid = document.getElementById('hospitals-grid');
+                    const hospitals = result.data.slice(0, 12); // Limit to 12 for display
                     
-                    document.getElementById('professionalCount').textContent = professionals.length;
-                    document.getElementById('hospitalCount').textContent = uniqueHospitals.size;
-                    document.getElementById('specialtyCount').textContent = uniqueSpecialties.size;
+                    hospitalsGrid.innerHTML = hospitals.map(hospital => `
+                        <div class="hospital-card">
+                            <h3>${hospital.hospital}</h3>
+                            <p>${hospital.name}</p>
+                            <div style="margin-top: 1rem;">
+                                <i class="fas fa-map-marker-alt" style="color: var(--text-secondary);"></i>
+                                <span style="margin-left: 0.5rem; font-size: 0.85rem; color: var(--text-secondary);">
+                                    ${hospital.specialty || 'Healthcare Professional'}
+                                </span>
+                            </div>
+                        </div>
+                    `).join('');
                 }
             } catch (error) {
-                console.error('Error loading stats:', error);
-                // Keep the default "-" values if API fails
+                console.error('Error loading hospitals:', error);
+                // Show fallback content
+                document.getElementById('hospitals-grid').innerHTML = `
+                    <div class="glass-card text-center" style="grid-column: 1 / -1;">
+                        <p>Loading hospital network...</p>
+                    </div>
+                `;
             }
         }
 
-        // Load stats on page load
-        loadStats();
+        // Load hospitals on page load
+        loadHospitals();
     </script>
 </body>
 </html>

@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}{{ hospital.name }} - Adventist Health India{% endblock %}
+
+{% block content %}
+<!-- Hospital Banner -->
+<section class="hero" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white;">
+    <div class="hero-content">
+        <h1>{{ hospital.name }}</h1>
+        <p>{{ hospital.city }}, {{ hospital.state }}</p>
+        {% if hospital.description %}
+        <p style="margin-top: 1rem; font-size: 1.1rem; opacity: 0.9;">{{ hospital.description }}</p>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Hospital Information -->
+<section class="section">
+    <div class="container">
+        <div class="grid grid-2">
+            <!-- Hospital Details -->
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem; color: var(--text-primary);">Hospital Information</h2>
+                
+                {% if hospital.address %}
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                        Address
+                    </h3>
+                    <p style="color: var(--text-secondary);">{{ hospital.address }}</p>
+                </div>
+                {% endif %}
+                
+                {% if hospital.phone %}
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                        <i class="fas fa-phone" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                        Contact Number
+                    </h3>
+                    <p style="color: var(--text-secondary);">{{ hospital.phone }}</p>
+                </div>
+                {% endif %}
+                
+                {% if hospital.email %}
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                        <i class="fas fa-envelope" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                        Email
+                    </h3>
+                    <p style="color: var(--text-secondary);">{{ hospital.email }}</p>
+                </div>
+                {% endif %}
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+                        <i class="fas fa-calendar" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                        Established
+                    </h3>
+                    <p style="color: var(--text-secondary);">{{ hospital.created_at.strftime('%Y') }}</p>
+                </div>
+            </div>
+            
+            <!-- Medical Director -->
+            <div class="glass-card">
+                <h2 style="margin-bottom: 2rem; color: var(--text-primary);">Medical Director</h2>
+                
+                {% if hospital.medical_director_name %}
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        {% if hospital.medical_director_photo %}
+                        <img src="{{ hospital.medical_director_photo }}" alt="{{ hospital.medical_director_name }}" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                        {% else %}
+                        <i class="fas fa-user-md" style="font-size: 3rem; color: white;"></i>
+                        {% endif %}
+                    </div>
+                    <h3>{{ hospital.medical_director_name }}</h3>
+                    <p style="color: var(--text-secondary);">Medical Director</p>
+                </div>
+                
+                {% if hospital.medical_director_bio %}
+                <p style="color: var(--text-secondary); line-height: 1.6;">{{ hospital.medical_director_bio }}</p>
+                {% endif %}
+                {% else %}
+                <div style="text-align: center; padding: 2rem 0;">
+                    <i class="fas fa-user-md" style="font-size: 4rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+                    <p style="color: var(--text-secondary);">Medical Director information will be updated soon.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Offered -->
+<section class="section" style="background: var(--background-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Services Offered</h2>
+            <p class="section-subtitle">Comprehensive healthcare services available at {{ hospital.name }}.</p>
+        </div>
+        
+        <div class="grid grid-3">
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-stethoscope" style="font-size: 2rem; color: var(--primary-color); margin-right: 1rem;"></i>
+                    <h3>General Medicine</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Primary healthcare services for patients of all ages.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-ambulance" style="font-size: 2rem; color: var(--secondary-color); margin-right: 1rem;"></i>
+                    <h3>Emergency Care</h3>
+                </div>
+                <p style="color: var(--text-secondary);">24/7 emergency medical services for critical situations.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-x-ray" style="font-size: 2rem; color: var(--accent-color); margin-right: 1rem;"></i>
+                    <h3>Diagnostic Services</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Advanced imaging and laboratory diagnostic services.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-procedures" style="font-size: 2rem; color: var(--primary-color); margin-right: 1rem;"></i>
+                    <h3>Surgical Services</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Modern surgical facilities with experienced teams.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-pills" style="font-size: 2rem; color: var(--secondary-color); margin-right: 1rem;"></i>
+                    <h3>Pharmacy Services</h3>
+                </div>
+                <p style="color: var(--text-secondary);">On-site pharmacy with essential medications.</p>
+            </div>
+            
+            <div class="glass-card">
+                <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                    <i class="fas fa-heart" style="font-size: 2rem; color: var(--accent-color); margin-right: 1rem;"></i>
+                    <h3>Specialized Care</h3>
+                </div>
+                <p style="color: var(--text-secondary);">Specialized medical care based on community needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Photo Gallery Placeholder -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Hospital Gallery</h2>
+            <p class="section-subtitle">Take a virtual tour of {{ hospital.name }}.</p>
+        </div>
+        
+        <div class="glass-card text-center" style="padding: 4rem 2rem;">
+            <i class="fas fa-images" style="font-size: 4rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem;">Photo Gallery Coming Soon</h3>
+            <p style="color: var(--text-secondary);">We're working on adding photos of our facilities. Check back soon for a visual tour of {{ hospital.name }}.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Healthcare Professionals -->
+<section class="section" style="background: var(--background-secondary);">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Healthcare Team</h2>
+            <p class="section-subtitle">Meet the dedicated professionals serving at {{ hospital.name }}.</p>
+        </div>
+        
+        <div class="glass-card text-center" style="max-width: 600px; margin: 0 auto;">
+            <i class="fas fa-user-md" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem;">Professional Directory</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                Discover our team of qualified doctors, nurses, and healthcare professionals at {{ hospital.name }}.
+            </p>
+            <a href="{{ url_for('directory') }}?hospital={{ hospital.id }}" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+                View Our Team
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Information -->
+<section class="section">
+    <div class="container">
+        <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Contact {{ hospital.name }}</h2>
+            
+            <div class="grid grid-2">
+                <div>
+                    <h3 style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                        Location
+                    </h3>
+                    <p style="color: var(--text-secondary);">
+                        {% if hospital.address %}
+                        {{ hospital.address }}<br>
+                        {% endif %}
+                        {{ hospital.city }}, {{ hospital.state }}
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <i class="fas fa-phone" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
+                        Contact
+                    </h3>
+                    <p style="color: var(--text-secondary);">
+                        {% if hospital.phone %}
+                        Phone: {{ hospital.phone }}<br>
+                        {% endif %}
+                        {% if hospital.email %}
+                        Email: {{ hospital.email }}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="{{ url_for('hospitals') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to All Hospitals
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
