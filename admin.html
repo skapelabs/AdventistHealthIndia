@@ -1,8 +1,43 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Adventist Health India</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" aria-label="Adventist Health India">
+                    <img src="images/logo.png" alt="Adventist Health India" class="nav-logo-img">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="hospitals.html" class="nav-link">Hospitals</a>
+                <a href="directory.html" class="nav-link">Directory</a>
+                <a href="register.html" class="nav-link nav-cta">Join Us</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-{% block title %}Admin Panel - Adventist Health India{% endblock %}
-
-{% block content %}
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-content">
@@ -254,116 +289,37 @@
         </div>
     </div>
 </div>
-{% endblock %}
 
-{% block scripts %}
-<style>
-.modal {
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Adventist Health India</h3>
+                    <p>Providing compassionate healthcare services across India with excellence and faith.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="hospitals.html">Our Hospitals</a></li>
+                        <li><a href="directory.html">Directory</a></li>
+                        <li><a href="register.html">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@adventisthealthindia.org</p>
+                    <p>Phone: +91-XXX-XXXX-XXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Adventist Health India. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-.modal-content {
-    background: var(--background-glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    margin: 5% auto;
-    padding: 0;
-    border-radius: var(--border-radius);
-    width: 90%;
-    max-width: 600px;
-    box-shadow: var(--shadow-heavy);
-}
-
-.modal-header {
-    padding: 2rem 2rem 1rem;
-    border-bottom: 1px solid var(--border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-header h2 {
-    margin: 0;
-    color: var(--text-primary);
-}
-
-.close {
-    color: var(--text-secondary);
-    font-size: 2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.close:hover {
-    color: var(--text-primary);
-}
-
-.modal-body {
-    padding: 2rem;
-    max-height: 70vh;
-    overflow-y: auto;
-}
-</style>
-
-<script>
-function editHospital(hospitalId) {
-    // In a real application, you would fetch hospital data via AJAX
-    // For now, we'll show the modal with placeholder data
-    document.getElementById('hospitalId').value = hospitalId;
-    document.getElementById('hospitalModal').style.display = 'block';
-}
-
-function closeModal() {
-    document.getElementById('hospitalModal').style.display = 'none';
-}
-
-// Close modal when clicking outside
-window.onclick = function(event) {
-    const modal = document.getElementById('hospitalModal');
-    if (event.target == modal) {
-        closeModal();
-    }
-}
-
-// Handle form submission
-document.getElementById('hospitalForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // In a real application, you would submit the form data via AJAX
-    alert('Hospital information updated successfully!');
-    closeModal();
-});
-
-// Confirmation dialogs for approve/reject actions
-document.addEventListener('DOMContentLoaded', function() {
-    const approveLinks = document.querySelectorAll('a[href*="approve"]');
-    const rejectLinks = document.querySelectorAll('a[href*="reject"]');
-    
-    approveLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (!confirm('Are you sure you want to approve this professional registration?')) {
-                e.preventDefault();
-            }
-        });
-    });
-    
-    rejectLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (!confirm('Are you sure you want to reject this professional registration? This action cannot be undone.')) {
-                e.preventDefault();
-            }
-        });
-    });
-});
-</script>
-{% endblock %}
-
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,8 +1,43 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ hospital.name }} - Adventist Health India</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="/" aria-label="Adventist Health India">
+                    <img src="images/logo.png" alt="Adventist Health India" class="nav-logo-img">
+                </a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="hospitals.html" class="nav-link">Hospitals</a>
+                <a href="directory.html" class="nav-link">Directory</a>
+                <a href="register.html" class="nav-link nav-cta">Join Us</a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-{% block title %}{{ hospital.name }} - Adventist Health India{% endblock %}
-
-{% block content %}
 <!-- Hospital Banner -->
 <section class="hero" style="background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white;">
     <div class="hero-content">
@@ -182,7 +217,7 @@
             <p style="color: var(--text-secondary); margin-bottom: 2rem;">
                 Discover our team of qualified doctors, nurses, and healthcare professionals at {{ hospital.name }}.
             </p>
-            <a href="{{ url_for('directory') }}?hospital={{ hospital.id }}" class="btn btn-primary">
+            <a href="directory.html?hospital={{ hospital.id }}" class="btn btn-primary">
                 <i class="fas fa-search"></i>
                 View Our Team
             </a>
@@ -227,7 +262,7 @@
             </div>
             
             <div style="text-align: center; margin-top: 2rem;">
-                <a href="{{ url_for('hospitals') }}" class="btn btn-secondary">
+                <a href="hospitals.html" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i>
                     Back to All Hospitals
                 </a>
@@ -235,5 +270,37 @@
         </div>
     </div>
 </section>
-{% endblock %}
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Adventist Health India</h3>
+                    <p>Providing compassionate healthcare services across India with excellence and faith.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="hospitals.html">Our Hospitals</a></li>
+                        <li><a href="directory.html">Directory</a></li>
+                        <li><a href="register.html">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@adventisthealthindia.org</p>
+                    <p>Phone: +91-XXX-XXXX-XXXX</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Adventist Health India. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
