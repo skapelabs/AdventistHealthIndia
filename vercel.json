@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "functions": {
+    "api/*.js": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "env": {
+    "SPREADSHEET_ID": "@spreadsheet-id",
+    "GOOGLE_SERVICE_ACCOUNT": "@google-service-account",
+    "ADMIN_API_KEY": "@admin-api-key"
+  }
+}

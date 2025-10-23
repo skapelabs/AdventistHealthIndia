@@ -1,0 +1,4 @@
+log_id,action,target_id,admin_key_used,timestamp,notes
+log-uuid-456,update_status,uuid-123,admin_key_used,2024-01-16T09:15:00Z,"Approved after thorough review of credentials and references."
+log-uuid-789,update_status,uuid-789,admin_key_used,2024-01-14T11:30:00Z,"Approved - excellent credentials and references."
+log-uuid-101,update_status,uuid-101,admin_key_used,2024-01-13T14:20:00Z,"Rejected - insufficient healthcare experience for this role."

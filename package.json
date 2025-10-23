@@ -1,0 +1,22 @@
+{
+  "name": "adventist-health-registration",
+  "version": "1.0.0",
+  "description": "Serverless registration system with Google Sheets backend",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'",
+    "test": "echo 'Run manual tests with curl examples in README'"
+  },
+  "dependencies": {
+    "googleapis": "^128.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
