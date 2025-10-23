@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventist Health India - Healthcare Network</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .header h1 {
+            color: #007AFF;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #86868B;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            color: #1D1D1F;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #86868B;
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            background: #007AFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #5856D6;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #007AFF;
+            border: 2px solid #007AFF;
+        }
+
+        .btn-secondary:hover {
+            background: #007AFF;
+            color: white;
+        }
+
+        .stats {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            margin: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #007AFF;
+            display: block;
+        }
+
+        .stat-label {
+            color: #86868B;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: #86868B;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-heartbeat"></i> Adventist Health India</h1>
+            <p>Connecting healthcare professionals across India through our comprehensive network</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h3>Join Our Network</h3>
+                <p>Register as a healthcare professional to be part of our growing community of medical experts.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Find Professionals</h3>
+                <p>Discover qualified healthcare professionals in your area or specialty through our comprehensive directory.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Verified Network</h3>
+                <p>All professionals are verified and approved to ensure the highest standards of healthcare delivery.</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 style="color: #1D1D1F; margin-bottom: 1rem;">Ready to Get Started?</h2>
+            <p style="color: #86868B; font-size: 1.1rem;">Join our network or explore our directory of healthcare professionals</p>
+            
+            <div class="cta-buttons">
+                <a href="/register.html" class="btn">
+                    <i class="fas fa-user-plus"></i>
+                    Register Now
+                </a>
+                <a href="/directory.html" class="btn btn-secondary">
+                    <i class="fas fa-search"></i>
+                    Browse Directory
+                </a>
+            </div>
+        </div>
+
+        <div class="stats">
+            <h3 style="text-align: center; color: #1D1D1F; margin-bottom: 2rem;">Our Network</h3>
+            <div class="stats-grid">
+                <div class="stat">
+                    <span class="stat-number" id="professionalCount">-</span>
+                    <div class="stat-label">Healthcare Professionals</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="hospitalCount">-</span>
+                    <div class="stat-label">Hospitals & Institutions</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="specialtyCount">-</span>
+                    <div class="stat-label">Medical Specialties</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2024 Adventist Health India. Connecting healthcare professionals across India.</p>
+        </div>
+    </div>
+
+    <script>
+        // Load stats from API
+        async function loadStats() {
+            try {
+                const response = await fetch('/api/getApproved?limit=1000');
+                const result = await response.json();
+                
+                if (result.success && result.data) {
+                    const professionals = result.data;
+                    const uniqueHospitals = new Set(professionals.map(p => p.hospital));
+                    const uniqueSpecialties = new Set(professionals.map(p => p.specialty).filter(s => s));
+                    
+                    document.getElementById('professionalCount').textContent = professionals.length;
+                    document.getElementById('hospitalCount').textContent = uniqueHospitals.size;
+                    document.getElementById('specialtyCount').textContent = uniqueSpecialties.size;
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+                // Keep the default "-" values if API fails
+            }
+        }
+
+        // Load stats on page load
+        loadStats();
+    </script>
+</body>
+</html>
