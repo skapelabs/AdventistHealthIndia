@@ -7,7 +7,19 @@
 <section class="hero">
     <div class="hero-content">
         <h1>About Adventist Health India</h1>
-        <p>Learn about our mission, vision, values, and the dedicated team that makes our healthcare network possible.</p>
+        
+        <!-- Image and Text Side by Side -->
+        <div style="display: flex; align-items: center; gap: 3rem; margin-top: 2rem; flex-wrap: wrap; flex-direction: row;">
+            <!-- Historical Image (Left) -->
+            <div class="image-container" style="max-width: 600px; flex: 0 0 auto; order: 1;">
+                <img src="{{ url_for('static', filename='images/about.png') }}" alt="About Adventist Health India" class="curved-image">
+            </div>
+            
+            <!-- Text Content (Right) -->
+            <div style="flex: 1; min-width: 300px; order: 2;">
+                <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); margin: 0;">Learn about our mission, vision, values, and the dedicated team that makes our healthcare network possible.</p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -15,7 +27,7 @@
 <section class="section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Our Mission</h2>
+            <h2 class="section-title">Our <span class="highlight-underline blue">Mission</span></h2>
         </div>
         
         <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
@@ -34,7 +46,7 @@
 <section class="section" style="background: var(--background-secondary);">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Our Vision</h2>
+            <h2 class="section-title">Our <span class="highlight-underline green">Vision</span></h2>
         </div>
         
         <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
@@ -117,38 +129,31 @@
             <p class="section-subtitle">Our leadership team guiding the strategic direction of Adventist Health India.</p>
         </div>
         
-        <div class="grid grid-3">
-            <div class="glass-card text-center">
-                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-user-tie" style="font-size: 3rem; color: white;"></i>
+        <div class="glass-card" style="padding: 2rem;">
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: nowrap;">
+                <div style="flex: 1; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Chairman</h3>
+                    <p style="color: var(--text-secondary);">Leading our organization with vision and dedication to healthcare excellence.</p>
                 </div>
-                <h3>Chairman</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Leading our organization with vision and dedication to healthcare excellence.</p>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    Provides strategic leadership and ensures our mission remains at the forefront of all operations.
-                </p>
-            </div>
-            
-            <div class="glass-card text-center">
-                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-user-graduate" style="font-size: 3rem; color: white;"></i>
+                
+                <div style="flex: 1; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-graduate" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Secretary</h3>
+                    <p style="color: var(--text-secondary);">Ensuring smooth operations and administrative excellence across our network.</p>
                 </div>
-                <h3>Secretary</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Ensuring smooth operations and administrative excellence across our network.</p>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    Manages organizational governance and coordinates between different hospital locations.
-                </p>
-            </div>
-            
-            <div class="glass-card text-center">
-                <div style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--accent-color), var(--primary-color)); border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-calculator" style="font-size: 3rem; color: white;"></i>
+                
+                <div style="flex: 1; text-align: center;">
+                    <div style="width: 80px; height: 80px; background: linear-gradient(135deg, var(--accent-color), var(--primary-color)); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-calculator" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Treasurer</h3>
+                    <p style="color: var(--text-secondary);">Managing our financial resources to support sustainable healthcare delivery.</p>
                 </div>
-                <h3>Treasurer</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">Managing our financial resources to support sustainable healthcare delivery.</p>
-                <p style="font-size: 0.9rem; color: var(--text-secondary);">
-                    Ensures financial stability and responsible stewardship of resources for continued growth.
-                </p>
             </div>
         </div>
     </div>

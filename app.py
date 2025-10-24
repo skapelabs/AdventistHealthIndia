@@ -1,58 +1,25 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
-import os
+from flask import Flask, render_template
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///adventist_health.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-
-# Database Models
-class Hospital(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    state = db.Column(db.String(100), nullable=False)
-    city = db.Column(db.String(100), nullable=False)
-    address = db.Column(db.Text)
-    phone = db.Column(db.String(20))
-    email = db.Column(db.String(100))
-    description = db.Column(db.Text)
-    banner_image = db.Column(db.String(200))
-    medical_director_name = db.Column(db.String(200))
-    medical_director_bio = db.Column(db.Text)
-    medical_director_photo = db.Column(db.String(200))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
-class Professional(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(200), nullable=False)
-    designation = db.Column(db.String(100), nullable=False)
-    hospital_id = db.Column(db.Integer, db.ForeignKey('hospital.id'), nullable=False)
-    specialization = db.Column(db.String(200))
-    bio = db.Column(db.Text)
-    profile_photo = db.Column(db.String(200))
-    email = db.Column(db.String(100))
-    phone = db.Column(db.String(20))
-    role = db.Column(db.String(50), nullable=False)  # Doctor, Nurse, Technician, etc.
-    is_approved = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    
-    hospital = db.relationship('Hospital', backref=db.backref('professionals', lazy=True))
-
-class Admin(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(120), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 # Routes
 @app.route('/')
 def home():
-    hospitals = Hospital.query.limit(12).all()
+    # Sample hospitals data for display
+    hospitals = [
+        {"id": 1, "name": "Aizawl Adventist Hospital", "city": "Aizawl", "state": "Mizoram"},
+        {"id": 2, "name": "SDA Medical Centre", "city": "Bangalore", "state": "Karnataka"},
+        {"id": 3, "name": "Mattison Memorial Hospital", "city": "Hapur", "state": "Uttar Pradesh"},
+        {"id": 4, "name": "Pune Adventist Hospital", "city": "Pune", "state": "Maharashtra"},
+        {"id": 5, "name": "Ruby Nelson Memorial Hospital", "city": "Jalandhar", "state": "Punjab"},
+        {"id": 6, "name": "SDA Hospital", "city": "Ottapalam", "state": "Kerala"},
+        {"id": 7, "name": "Simla Sanitarium & Hospital", "city": "Simla", "state": "Himachal Pradesh"},
+        {"id": 8, "name": "SDA Hospital", "city": "Thanjavur", "state": "Tamil Nadu"},
+        {"id": 9, "name": "Adventist Mission Hospital", "city": "Jengjal", "state": "Meghalaya"},
+        {"id": 10, "name": "GATE Adventist Mission Hospital", "city": "Falakata", "state": "West Bengal"},
+        {"id": 11, "name": "SDA College of Nursing", "city": "Ottapalam", "state": "Kerala"},
+        {"id": 12, "name": "Future Facility", "city": "TBD", "state": "TBD"}
+    ]
     return render_template('index.html', hospitals=hospitals)
 
 @app.route('/about')
@@ -61,112 +28,93 @@ def about():
 
 @app.route('/hospitals')
 def hospitals():
-    hospitals = Hospital.query.all()
+    # Sample hospitals data for display
+    hospitals = [
+        {"id": 1, "name": "Aizawl Adventist Hospital", "city": "Aizawl", "state": "Mizoram", "address": "Aizawl, Mizoram", "phone": "+91-XXX-XXXXXXX", "email": "info@aizawlhospital.com"},
+        {"id": 2, "name": "SDA Medical Centre", "city": "Bangalore", "state": "Karnataka", "address": "Bangalore, Karnataka", "phone": "+91-XXX-XXXXXXX", "email": "info@sdamedical.com"},
+        {"id": 3, "name": "Mattison Memorial Hospital", "city": "Hapur", "state": "Uttar Pradesh", "address": "Hapur, Uttar Pradesh", "phone": "+91-XXX-XXXXXXX", "email": "info@mattisonhospital.com"},
+        {"id": 4, "name": "Pune Adventist Hospital", "city": "Pune", "state": "Maharashtra", "address": "Pune, Maharashtra", "phone": "+91-XXX-XXXXXXX", "email": "info@puneadventist.com"},
+        {"id": 5, "name": "Ruby Nelson Memorial Hospital", "city": "Jalandhar", "state": "Punjab", "address": "Jalandhar, Punjab", "phone": "+91-XXX-XXXXXXX", "email": "info@rubynelson.com"},
+        {"id": 6, "name": "SDA Hospital", "city": "Ottapalam", "state": "Kerala", "address": "Ottapalam, Kerala", "phone": "+91-XXX-XXXXXXX", "email": "info@ottapalamhospital.com"},
+        {"id": 7, "name": "Simla Sanitarium & Hospital", "city": "Simla", "state": "Himachal Pradesh", "address": "Simla, Himachal Pradesh", "phone": "+91-XXX-XXXXXXX", "email": "info@simlasanitarium.com"},
+        {"id": 8, "name": "SDA Hospital", "city": "Thanjavur", "state": "Tamil Nadu", "address": "Thanjavur, Tamil Nadu", "phone": "+91-XXX-XXXXXXX", "email": "info@thanjavurhospital.com"},
+        {"id": 9, "name": "Adventist Mission Hospital", "city": "Jengjal", "state": "Meghalaya", "address": "Jengjal, Meghalaya", "phone": "+91-XXX-XXXXXXX", "email": "info@jengjalhospital.com"},
+        {"id": 10, "name": "GATE Adventist Mission Hospital", "city": "Falakata", "state": "West Bengal", "address": "Falakata, West Bengal", "phone": "+91-XXX-XXXXXXX", "email": "info@gatehospital.com"},
+        {"id": 11, "name": "SDA College of Nursing", "city": "Ottapalam", "state": "Kerala", "address": "Ottapalam, Kerala", "phone": "+91-XXX-XXXXXXX", "email": "info@nursingcollege.com"},
+        {"id": 12, "name": "Future Facility", "city": "TBD", "state": "TBD", "address": "To be determined", "phone": "TBD", "email": "TBD"}
+    ]
     return render_template('hospitals.html', hospitals=hospitals)
 
 @app.route('/hospitals/<int:hospital_id>')
 def hospital_detail(hospital_id):
-    hospital = Hospital.query.get_or_404(hospital_id)
+    # Sample hospital data for display
+    hospitals = {
+        1: {"id": 1, "name": "Aizawl Adventist Hospital", "city": "Aizawl", "state": "Mizoram", "address": "Aizawl, Mizoram", "phone": "+91-XXX-XXXXXXX", "email": "info@aizawlhospital.com", "description": "A leading healthcare facility in Mizoram providing comprehensive medical services."},
+        2: {"id": 2, "name": "SDA Medical Centre", "city": "Bangalore", "state": "Karnataka", "address": "Bangalore, Karnataka", "phone": "+91-XXX-XXXXXXX", "email": "info@sdamedical.com", "description": "Modern medical center in Bangalore offering specialized healthcare services."},
+        3: {"id": 3, "name": "Mattison Memorial Hospital", "city": "Hapur", "state": "Uttar Pradesh", "address": "Hapur, Uttar Pradesh", "phone": "+91-XXX-XXXXXXX", "email": "info@mattisonhospital.com", "description": "Memorial hospital dedicated to providing quality healthcare in Uttar Pradesh."},
+        4: {"id": 4, "name": "Pune Adventist Hospital", "city": "Pune", "state": "Maharashtra", "address": "Pune, Maharashtra", "phone": "+91-XXX-XXXXXXX", "email": "info@puneadventist.com", "description": "Comprehensive healthcare services in the heart of Pune."},
+        5: {"id": 5, "name": "Ruby Nelson Memorial Hospital", "city": "Jalandhar", "state": "Punjab", "address": "Jalandhar, Punjab", "phone": "+91-XXX-XXXXXXX", "email": "info@rubynelson.com", "description": "Memorial hospital serving the community of Jalandhar with excellence."},
+        6: {"id": 6, "name": "SDA Hospital", "city": "Ottapalam", "state": "Kerala", "address": "Ottapalam, Kerala", "phone": "+91-XXX-XXXXXXX", "email": "info@ottapalamhospital.com", "description": "Healthcare facility in Kerala providing quality medical care."},
+        7: {"id": 7, "name": "Simla Sanitarium & Hospital", "city": "Simla", "state": "Himachal Pradesh", "address": "Simla, Himachal Pradesh", "phone": "+91-XXX-XXXXXXX", "email": "info@simlasanitarium.com", "description": "Sanitarium and hospital in the beautiful hills of Simla."},
+        8: {"id": 8, "name": "SDA Hospital", "city": "Thanjavur", "state": "Tamil Nadu", "address": "Thanjavur, Tamil Nadu", "phone": "+91-XXX-XXXXXXX", "email": "info@thanjavurhospital.com", "description": "Healthcare services in Tamil Nadu's cultural capital."},
+        9: {"id": 9, "name": "Adventist Mission Hospital", "city": "Jengjal", "state": "Meghalaya", "address": "Jengjal, Meghalaya", "phone": "+91-XXX-XXXXXXX", "email": "info@jengjalhospital.com", "description": "Mission hospital serving the community of Meghalaya."},
+        10: {"id": 10, "name": "GATE Adventist Mission Hospital", "city": "Falakata", "state": "West Bengal", "address": "Falakata, West Bengal", "phone": "+91-XXX-XXXXXXX", "email": "info@gatehospital.com", "description": "Mission hospital in West Bengal providing healthcare services."},
+        11: {"id": 11, "name": "SDA College of Nursing", "city": "Ottapalam", "state": "Kerala", "address": "Ottapalam, Kerala", "phone": "+91-XXX-XXXXXXX", "email": "info@nursingcollege.com", "description": "Educational institution training future healthcare professionals."},
+        12: {"id": 12, "name": "Future Facility", "city": "TBD", "state": "TBD", "address": "To be determined", "phone": "TBD", "email": "TBD", "description": "Future healthcare facility to be established."}
+    }
+    
+    hospital = hospitals.get(hospital_id)
+    if not hospital:
+        return "Hospital not found", 404
+    
     return render_template('hospital_detail.html', hospital=hospital)
 
 @app.route('/directory')
 def directory():
-    hospital_filter = request.args.get('hospital')
-    specialization_filter = request.args.get('specialization')
-    role_filter = request.args.get('role')
+    # Sample professionals data for display
+    professionals = [
+        {"id": 1, "name": "Dr. John Smith", "designation": "Chief Medical Officer", "hospital": "Aizawl Adventist Hospital", "specialization": "Internal Medicine", "role": "Doctor"},
+        {"id": 2, "name": "Dr. Sarah Johnson", "designation": "Pediatrician", "hospital": "SDA Medical Centre", "specialization": "Pediatrics", "role": "Doctor"},
+        {"id": 3, "name": "Nurse Mary Wilson", "designation": "Head Nurse", "hospital": "Mattison Memorial Hospital", "specialization": "Critical Care", "role": "Nurse"},
+        {"id": 4, "name": "Dr. Michael Brown", "designation": "Cardiologist", "hospital": "Pune Adventist Hospital", "specialization": "Cardiology", "role": "Doctor"},
+        {"id": 5, "name": "Dr. Emily Davis", "designation": "Gynecologist", "hospital": "Ruby Nelson Memorial Hospital", "specialization": "Gynecology", "role": "Doctor"}
+    ]
     
-    query = Professional.query.filter_by(is_approved=True)
-    
-    if hospital_filter:
-        query = query.filter_by(hospital_id=hospital_filter)
-    if specialization_filter:
-        query = query.filter(Professional.specialization.contains(specialization_filter))
-    if role_filter:
-        query = query.filter_by(role=role_filter)
-    
-    professionals = query.all()
-    hospitals = Hospital.query.all()
+    hospitals = [
+        {"id": 1, "name": "Aizawl Adventist Hospital"},
+        {"id": 2, "name": "SDA Medical Centre"},
+        {"id": 3, "name": "Mattison Memorial Hospital"},
+        {"id": 4, "name": "Pune Adventist Hospital"},
+        {"id": 5, "name": "Ruby Nelson Memorial Hospital"},
+        {"id": 6, "name": "SDA Hospital"},
+        {"id": 7, "name": "Simla Sanitarium & Hospital"},
+        {"id": 8, "name": "SDA Hospital"},
+        {"id": 9, "name": "Adventist Mission Hospital"},
+        {"id": 10, "name": "GATE Adventist Mission Hospital"},
+        {"id": 11, "name": "SDA College of Nursing"},
+        {"id": 12, "name": "Future Facility"}
+    ]
     
     return render_template('directory.html', professionals=professionals, hospitals=hospitals)
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/register')
 def register():
-    if request.method == 'POST':
-        name = request.form['name']
-        designation = request.form['designation']
-        hospital_id = request.form['hospital_id']
-        specialization = request.form['specialization']
-        bio = request.form['bio']
-        email = request.form['email']
-        phone = request.form['phone']
-        role = request.form['role']
-        
-        professional = Professional(
-            name=name,
-            designation=designation,
-            hospital_id=hospital_id,
-            specialization=specialization,
-            bio=bio,
-            email=email,
-            phone=phone,
-            role=role
-        )
-        
-        db.session.add(professional)
-        db.session.commit()
-        
-        flash('Registration submitted successfully! Your profile will be reviewed and approved by our admin team.')
-        return redirect(url_for('directory'))
-    
-    hospitals = Hospital.query.all()
+    # Sample hospitals data for the form
+    hospitals = [
+        {"id": 1, "name": "Aizawl Adventist Hospital"},
+        {"id": 2, "name": "SDA Medical Centre"},
+        {"id": 3, "name": "Mattison Memorial Hospital"},
+        {"id": 4, "name": "Pune Adventist Hospital"},
+        {"id": 5, "name": "Ruby Nelson Memorial Hospital"},
+        {"id": 6, "name": "SDA Hospital"},
+        {"id": 7, "name": "Simla Sanitarium & Hospital"},
+        {"id": 8, "name": "SDA Hospital"},
+        {"id": 9, "name": "Adventist Mission Hospital"},
+        {"id": 10, "name": "GATE Adventist Mission Hospital"},
+        {"id": 11, "name": "SDA College of Nursing"},
+        {"id": 12, "name": "Future Facility"}
+    ]
     return render_template('register.html', hospitals=hospitals)
 
-@app.route('/admin')
-def admin():
-    pending_professionals = Professional.query.filter_by(is_approved=False).all()
-    hospitals = Hospital.query.all()
-    return render_template('admin.html', pending_professionals=pending_professionals, hospitals=hospitals)
-
-@app.route('/admin/approve/<int:professional_id>')
-def approve_professional(professional_id):
-    professional = Professional.query.get_or_404(professional_id)
-    professional.is_approved = True
-    db.session.commit()
-    flash(f'Professional {professional.name} has been approved!')
-    return redirect(url_for('admin'))
-
-@app.route('/admin/reject/<int:professional_id>')
-def reject_professional(professional_id):
-    professional = Professional.query.get_or_404(professional_id)
-    db.session.delete(professional)
-    db.session.commit()
-    flash(f'Professional {professional.name} has been rejected and removed.')
-    return redirect(url_for('admin'))
-
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-        
-        # Add sample hospitals if they don't exist
-        if Hospital.query.count() == 0:
-            sample_hospitals = [
-                Hospital(name="Aizawl Adventist Hospital", state="Mizoram", city="Aizawl"),
-                Hospital(name="SDA Medical Centre", state="Karnataka", city="Bangalore"),
-                Hospital(name="Mattison Memorial Hospital", state="Uttar Pradesh", city="Hapur"),
-                Hospital(name="Pune Adventist Hospital", state="Maharashtra", city="Pune"),
-                Hospital(name="Ruby Nelson Memorial Hospital", state="Punjab", city="Jalandhar"),
-                Hospital(name="SDA Hospital", state="Kerala", city="Ottapalam"),
-                Hospital(name="Simla Sanitarium & Hospital", state="Himachal Pradesh", city="Simla"),
-                Hospital(name="SDA Hospital", state="Tamil Nadu", city="Thanjavur"),
-                Hospital(name="Adventist Mission Hospital", state="Meghalaya", city="Jengjal"),
-                Hospital(name="GATE Adventist Mission Hospital", state="West Bengal", city="Falakata"),
-                Hospital(name="SDA College of Nursing", state="Kerala", city="Ottapalam"),
-                Hospital(name="Future Facility", state="TBD", city="TBD")
-            ]
-            
-            for hospital in sample_hospitals:
-                db.session.add(hospital)
-            
-            db.session.commit()
-    
-    app.run(debug=True, port=6990)
+    app.run(debug=True, port=5000)

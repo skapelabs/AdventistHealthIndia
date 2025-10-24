@@ -50,7 +50,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', function() {
-    const animatedElements = document.querySelectorAll('.glass-card, .hospital-card, .professional-card, .section-header');
+    const animatedElements = document.querySelectorAll('.glass-card, .hospital-card, .professional-card, .section-header, .stats-card');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
@@ -139,9 +139,109 @@ window.addEventListener('scroll', function() {
     const hero = document.querySelector('.hero');
     
     if (hero) {
-        const rate = scrolled * -0.5;
+        const rate = scrolled * -0.3;
         hero.style.transform = `translateY(${rate}px)`;
     }
+});
+
+// Floating animation for decorative elements
+document.addEventListener('DOMContentLoaded', function() {
+    const decorativeElements = document.querySelectorAll('.decorative-element');
+    
+    decorativeElements.forEach((element, index) => {
+        // Add random floating animation
+        const delay = index * 0.5;
+        const duration = 3 + Math.random() * 2; // 3-5 seconds
+        const amplitude = 10 + Math.random() * 10; // 10-20px movement
+        
+        element.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+    });
+});
+
+// Add floating animation keyframes
+const floatingStyle = document.createElement('style');
+floatingStyle.textContent = `
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+        }
+        25% {
+            transform: translateY(-10px) rotate(1deg);
+        }
+        50% {
+            transform: translateY(-5px) rotate(0deg);
+        }
+        75% {
+            transform: translateY(-15px) rotate(-1deg);
+        }
+    }
+`;
+document.head.appendChild(floatingStyle);
+
+// Stats counter animation
+document.addEventListener('DOMContentLoaded', function() {
+    const statsNumbers = document.querySelectorAll('.stats-card h3');
+    
+    const animateCounter = (element, target) => {
+        let current = 0;
+        const increment = target / 100;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
+            }
+            element.textContent = Math.floor(current) + (target >= 1000 ? 'k' : '');
+        }, 20);
+    };
+    
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const number = entry.target;
+                const text = number.textContent;
+                const target = parseInt(text.replace('k', '000'));
+                animateCounter(number, target);
+                statsObserver.unobserve(number);
+            }
+        });
+    });
+    
+    statsNumbers.forEach(number => {
+        statsObserver.observe(number);
+    });
+});
+
+// Button hover effects
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-2px) scale(1.02)';
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+});
+
+// Card hover effects with tilt
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.glass-card, .hospital-card, .professional-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) rotateX(5deg)';
+            this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) rotateX(0deg)';
+            this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+        });
+    });
 });
 
 // Loading animation
@@ -155,8 +255,8 @@ function showLoading() {
         </div>
     `;
     
-    const style = document.createElement('style');
-    style.textContent = `
+    const loaderStyle = document.createElement('style');
+    loaderStyle.textContent = `
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -179,7 +279,7 @@ function showLoading() {
             width: 40px;
             height: 40px;
             border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-color);
+            border-top: 4px solid var(--primary-blue);
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
@@ -190,7 +290,7 @@ function showLoading() {
             100% { transform: rotate(360deg); }
         }
     `;
-    document.head.appendChild(style);
+    document.head.appendChild(loaderStyle);
     document.body.appendChild(loader);
     
     return loader;
@@ -229,11 +329,12 @@ function searchProfessionals(query) {
         const name = card.querySelector('.professional-name').textContent.toLowerCase();
         const title = card.querySelector('.professional-title').textContent.toLowerCase();
         const hospital = card.querySelector('.professional-hospital').textContent.toLowerCase();
-        const bio = card.querySelector('.professional-bio').textContent.toLowerCase();
+        const bio = card.querySelector('.professional-bio') ? card.querySelector('.professional-bio').textContent.toLowerCase() : '';
         
         if (name.includes(searchTerm) || title.includes(searchTerm) || 
             hospital.includes(searchTerm) || bio.includes(searchTerm)) {
             card.style.display = 'block';
+            card.style.animation = 'fadeInUp 0.5s ease-out';
         } else {
             card.style.display = 'none';
         }
@@ -262,3 +363,181 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Scroll to top functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Create scroll to top button
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    scrollToTopBtn.className = 'scroll-to-top';
+    scrollToTopBtn.style.cssText = `
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 50px;
+        height: 50px;
+        background: var(--primary-blue);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    `;
+    
+    document.body.appendChild(scrollToTopBtn);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.style.display = 'flex';
+        } else {
+            scrollToTopBtn.style.display = 'none';
+        }
+    });
+    
+    // Scroll to top when clicked
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Hover effects
+    scrollToTopBtn.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px) scale(1.1)';
+        this.style.boxShadow = '0 8px 25px rgba(0, 122, 255, 0.4)';
+    });
+    
+    scrollToTopBtn.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+        this.style.boxShadow = '0 4px 15px rgba(0, 122, 255, 0.3)';
+    });
+});
+
+// Typing animation for hero text
+document.addEventListener('DOMContentLoaded', function() {
+    const heroTitle = document.querySelector('.hero h1');
+    if (heroTitle) {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                heroTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        // Start typing animation after a short delay
+        setTimeout(typeWriter, 1000);
+    }
+});
+
+// Particle effect for hero section
+document.addEventListener('DOMContentLoaded', function() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        // Create floating particles
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.cssText = `
+                position: absolute;
+                width: 4px;
+                height: 4px;
+                background: var(--primary-blue);
+                border-radius: 50%;
+                opacity: 0.3;
+                animation: float-particle ${3 + Math.random() * 4}s linear infinite;
+                left: ${Math.random() * 100}%;
+                top: ${Math.random() * 100}%;
+            `;
+            hero.appendChild(particle);
+        }
+    }
+});
+
+// Add particle animation
+const particleStyle = document.createElement('style');
+particleStyle.textContent = `
+    @keyframes float-particle {
+        0% {
+            transform: translateY(100vh) translateX(0);
+            opacity: 0;
+        }
+        10% {
+            opacity: 0.3;
+        }
+        90% {
+            opacity: 0.3;
+        }
+        100% {
+            transform: translateY(-100px) translateX(50px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(particleStyle);
+
+// Custom Cursor
+let mouseX = 0;
+let mouseY = 0;
+let cursorX = 0;
+let cursorY = 0;
+let isMouseMoving = false;
+
+function initializeCustomCursor() {
+    const cursor = document.getElementById('custom-cursor');
+    if (!cursor) return;
+
+    // Track mouse movement
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        isMouseMoving = true;
+    });
+
+    // Hide cursor when mouse leaves window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+    });
+
+    // Show cursor when mouse enters window
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '0.8';
+    });
+
+    // Smooth cursor animation
+    function animateCursor() {
+        if (isMouseMoving) {
+            // Add slight lag for trailing effect
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+            
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            cursor.style.transform = 'translate(-50%, -50%)';
+        }
+        
+        requestAnimationFrame(animateCursor);
+    }
+
+    // Start animation loop
+    animateCursor();
+
+    // Hide default cursor
+    document.body.style.cursor = 'none';
+}
+
+// Initialize custom cursor when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCustomCursor();
+});

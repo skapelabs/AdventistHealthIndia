@@ -15,26 +15,20 @@
 <section class="section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Hospitals Across India</h2>
-            <p class="section-subtitle">From the hills of Himachal Pradesh to the coastal regions of Kerala, our hospitals serve diverse communities with specialized care.</p>
+            <h2 class="section-title"><span class="highlight-underline purple">Hospitals Across India</span></h2>
+            <p class="section-subtitle">From the hills of <span class="highlight-underline green">Himachal Pradesh</span> to the coastal regions of <span class="highlight-underline blue">Kerala</span>, our hospitals serve diverse communities with specialized care.</p>
         </div>
         
-        <div class="grid grid-3">
+        <div class="grid grid-4x3">
             {% for hospital in hospitals %}
             <div class="hospital-card" onclick="window.location.href='{{ url_for('hospital_detail', hospital_id=hospital.id) }}'">
-                <div style="width: 100%; height: 200px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: var(--border-radius-small); margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-hospital" style="font-size: 4rem; color: white;"></i>
+                <div style="width: 100%; height: 150px; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); border-radius: var(--border-radius-small); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-hospital" style="font-size: 3rem; color: white;"></i>
                 </div>
                 <h3>{{ hospital.name }}</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">{{ hospital.city }}, {{ hospital.state }}</p>
+                <p style="color: var(--text-secondary); margin-bottom: 0.5rem;">{{ hospital.city }}, {{ hospital.state }}</p>
                 
-                {% if hospital.description %}
-                <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">
-                    {{ hospital.description[:100] }}{% if hospital.description|length > 100 %}...{% endif %}
-                </p>
-                {% endif %}
-                
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 1rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 0.5rem;">
                     <div style="display: flex; align-items: center;">
                         <i class="fas fa-map-marker-alt" style="color: var(--text-secondary); margin-right: 0.5rem;"></i>
                         <span style="font-size: 0.85rem; color: var(--text-secondary);">{{ hospital.state }}</span>

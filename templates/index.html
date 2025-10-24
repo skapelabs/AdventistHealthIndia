@@ -5,18 +5,31 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero">
-    <div class="hero-content">
-        <h1>Healing with Compassion, Excellence, and Faith</h1>
-        <p>Welcome to Adventist Health India, where we provide exceptional healthcare services across 12 hospitals nationwide, guided by our mission to serve communities with love and medical excellence.</p>
-        <div class="hero-cta">
-            <a href="{{ url_for('directory') }}" class="btn btn-primary">
-                <i class="fas fa-user-md"></i>
-                Find Healthcare Professionals
-            </a>
-            <a href="{{ url_for('about') }}" class="btn btn-secondary">
-                <i class="fas fa-info-circle"></i>
-                Learn More About Us
-            </a>
+    <div class="hero-content" style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem;">
+        <div class="hero-text" style="text-align: left; flex: 1; max-width: 60%;">
+            <div class="hero-badge" style="justify-content: flex-start;">
+                <i class="fas fa-shield-alt"></i>
+                <span>100% Trusted Healthcare Network</span>
+            </div>
+            <h1 style="text-align: left;">Learn <span class="highlight">Healthcare</span> From Our Top Professionals</h1>
+            <p style="text-align: left;">Welcome to Adventist Health India, where we provide exceptional healthcare services across 12 hospitals nationwide, guided by our mission to serve communities with love and medical excellence.</p>
+            <div class="hero-cta" style="justify-content: flex-start;">
+                <a href="{{ url_for('directory') }}" class="btn btn-primary">
+                    <i class="fas fa-user-md"></i>
+                    Find Healthcare Professionals
+                </a>
+                <a href="{{ url_for('about') }}" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More About Us
+                </a>
+            </div>
+            <div class="hero-contact" style="justify-content: flex-start;">
+                <i class="fas fa-phone"></i>
+                <span>Have any Question? Call us at +91-XXX-XXXXXXX</span>
+            </div>
+        </div>
+        <div class="hero-visual" style="flex: 1; display: flex; justify-content: center; align-items: center;">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Healthcare Professional" class="hero-image" style="max-width: 100%; height: auto;">
         </div>
     </div>
 </section>
@@ -25,8 +38,8 @@
 <section class="section">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">About Adventist Health India</h2>
-            <p class="section-subtitle">The Medical Trust of the Seventh-day Adventists represents a network of healthcare institutions dedicated to providing compassionate, high-quality medical care across India.</p>
+            <h2 class="section-title">About <span class="highlight-underline blue">Adventist Health India</span></h2>
+            <p class="section-subtitle">The Medical Trust of the Seventh-day Adventists represents a network of <span class="highlight-underline green">healthcare institutions</span> dedicated to providing compassionate, high-quality medical care across India.</p>
         </div>
         
         <div class="grid grid-3">
@@ -53,8 +66,8 @@
 <section class="section" style="background: var(--background-secondary);">
     <div class="container">
         <div class="section-header">
-            <h2 class="section-title">Our Hospital Network</h2>
-            <p class="section-subtitle">Explore our 12 hospitals across India, each dedicated to serving their local communities with excellence.</p>
+            <h2 class="section-title">Our <span class="highlight-underline purple">Hospital Network</span></h2>
+            <p class="section-subtitle">Explore our <span class="highlight-underline pink">12 hospitals</span> across India, each dedicated to serving their local communities with excellence.</p>
         </div>
         
         <div class="grid grid-4x3">
@@ -84,34 +97,39 @@
 <!-- Mission, Vision & Values Preview -->
 <section class="section">
     <div class="container">
+        <!-- Abstract Elements for Foundation Section -->
+        <div class="abstract-element red-dashes" style="top: 2%; left: 5%;"></div>
+        <div class="abstract-element green-wave" style="top: 4%; right: 10%;"></div>
+        <div class="abstract-element zigzag" style="top: 6%; left: 8%;"></div>
+        
         <div class="section-header">
-            <h2 class="section-title">Our Foundation</h2>
-            <p class="section-subtitle">Built on principles that guide our commitment to healthcare excellence.</p>
+            <h2 class="section-title">Our <span class="highlight-underline blue">Foundation</span></h2>
+            <p class="section-subtitle">Built on <span class="highlight-underline green">principles</span> that guide our commitment to <span class="highlight-underline purple">healthcare excellence</span>.</p>
         </div>
         
         <div class="grid grid-3">
             <div class="glass-card">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <i class="fas fa-bullseye" style="font-size: 2rem; color: var(--primary-color); margin-right: 1rem;"></i>
-                    <h3>Mission</h3>
+                    <h3><span class="highlight-underline blue">Mission</span></h3>
                 </div>
-                <p>To provide comprehensive, compassionate healthcare services that promote physical, mental, and spiritual well-being, following the healing ministry of Jesus Christ.</p>
+                <p>To provide comprehensive, <span class="highlight-underline green">compassionate healthcare services</span> that promote physical, mental, and spiritual well-being, following the healing ministry of Jesus Christ.</p>
             </div>
             
             <div class="glass-card">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <i class="fas fa-eye" style="font-size: 2rem; color: var(--secondary-color); margin-right: 1rem;"></i>
-                    <h3>Vision</h3>
+                    <h3><span class="highlight-underline green">Vision</span></h3>
                 </div>
-                <p>To be the leading healthcare network in India, recognized for excellence in medical care, innovation, and compassionate service to all communities.</p>
+                <p>To be the <span class="highlight-underline purple">leading healthcare network</span> in India, recognized for excellence in medical care, innovation, and compassionate service to all communities.</p>
             </div>
             
             <div class="glass-card">
                 <div style="display: flex; align-items: center; margin-bottom: 1rem;">
                     <i class="fas fa-gem" style="font-size: 2rem; color: var(--accent-color); margin-right: 1rem;"></i>
-                    <h3>Values</h3>
+                    <h3><span class="highlight-underline pink">Values</span></h3>
                 </div>
-                <p>Compassion, Excellence, Integrity, Respect, and Service - these core values guide every interaction and decision in our healthcare delivery.</p>
+                <p><span class="highlight-underline blue">Compassion</span>, <span class="highlight-underline green">Excellence</span>, <span class="highlight-underline purple">Integrity</span>, <span class="highlight-underline yellow">Respect</span>, and <span class="highlight-underline pink">Service</span> - these core values guide every interaction and decision in our healthcare delivery.</p>
             </div>
         </div>
         
@@ -127,34 +145,43 @@
 <!-- Meet Our Team Teaser -->
 <section class="section" style="background: var(--background-secondary);">
     <div class="container">
+        <!-- Abstract Elements for Leadership Section -->
+        <div class="abstract-element yellow-star" style="top: 3%; right: 5%;"></div>
+        <div class="decorative-element starburst" style="top: 12%; left: 3%;"></div>
+        <div class="decorative-element papers" style="top: 18%; right: 8%;"></div>
+        <div class="decorative-element globe" style="top: 6%; left: 8%;"></div>
+        <div class="decorative-element ruler" style="top: 15%; right: 15%;"></div>
+        
         <div class="section-header">
             <h2 class="section-title">Meet Our Leadership</h2>
             <p class="section-subtitle">Dedicated leaders guiding our mission of compassionate healthcare.</p>
         </div>
         
-        <div class="grid grid-3">
-            <div class="glass-card text-center">
-                <div style="width: 100px; height: 100px; background: var(--primary-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-user-tie" style="font-size: 2rem; color: white;"></i>
+        <div class="glass-card" style="padding: 2rem;">
+            <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: flex-start; gap: 1rem; flex-wrap: nowrap;">
+                <div style="flex: 1; text-align: center;">
+                    <div style="width: 100px; height: 100px; background: var(--primary-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-tie" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Chairman</h3>
+                    <p>Leading our organization with vision and dedication to healthcare excellence.</p>
                 </div>
-                <h3>Chairman</h3>
-                <p>Leading our organization with vision and dedication to healthcare excellence.</p>
-            </div>
-            
-            <div class="glass-card text-center">
-                <div style="width: 100px; height: 100px; background: var(--secondary-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-user-graduate" style="font-size: 2rem; color: white;"></i>
+                
+                <div style="flex: 1; text-align: center;">
+                    <div style="width: 100px; height: 100px; background: var(--secondary-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user-graduate" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Secretary</h3>
+                    <p>Ensuring smooth operations and administrative excellence across our network.</p>
                 </div>
-                <h3>Secretary</h3>
-                <p>Ensuring smooth operations and administrative excellence across our network.</p>
-            </div>
-            
-            <div class="glass-card text-center">
-                <div style="width: 100px; height: 100px; background: var(--accent-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-calculator" style="font-size: 2rem; color: white;"></i>
+                
+                <div style="flex: 1; text-align: center;">
+                    <div style="width: 100px; height: 100px; background: var(--accent-color); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-calculator" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h3>Treasurer</h3>
+                    <p>Managing our financial resources to support sustainable healthcare delivery.</p>
                 </div>
-                <h3>Treasurer</h3>
-                <p>Managing our financial resources to support sustainable healthcare delivery.</p>
             </div>
         </div>
         
@@ -185,6 +212,23 @@
                     Find Professionals
                 </a>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="section" style="background: var(--background-secondary); padding: 3rem 0;">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title" style="font-size: 1.5rem; color: var(--text-secondary);">Trusted by Leading Healthcare Organizations</h2>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; opacity: 0.6;">
+            <div style="font-size: 1.2rem; font-weight: 600; color: var(--text-secondary);">WHO</div>
+            <div style="font-size: 1.2rem; font-weight: 600; color: var(--text-secondary);">UNICEF</div>
+            <div style="font-size: 1.2rem; font-weight: 600; color: var(--text-secondary);">Red Cross</div>
+            <div style="font-size: 1.2rem; font-weight: 600; color: var(--text-secondary);">Ministry of Health</div>
+            <div style="font-size: 1.2rem; font-weight: 600; color: var(--text-secondary);">Medical Council</div>
+            <div style="font-size: 1.2rem; font-weight: 600; color: var(--text-secondary);">NGO Partners</div>
         </div>
     </div>
 </section>
